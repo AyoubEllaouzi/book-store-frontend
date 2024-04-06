@@ -5,8 +5,8 @@ import { LoanBook } from "../../models/LoanBook.ts";
 import {Book} from "../../models/Book.ts";
 import {getAllBooks} from "../../api/Book.ts";
 import {deleteLoanBook, getAllLoanBooks} from "../../api/LoanBook.ts";
-import HeroSection from "../../components/Books/HeroSection.tsx";
-import LoanBookList from "../../components/LendingBook/ListLoanBookPage.tsx";
+import HeroSection from "../../components/LoanBook/HeroSection.tsx";
+import LoanBookList from "../../components/LoanBook/ListLoanBookPage.tsx";
 
 export default function ListLoanBookPage() {
     const [loanBooks, setLoanBooks] = useState<LoanBook[]>([]);

@@ -13,8 +13,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ fullName, title }) => {
                 <div className="text-white text-center">
                     <h1 className="mb-3">Welcome to {fullName}</h1>
                     <h4 className="mb-3">{title}</h4>
-                    <Link className="btn btn-outline-light btn-lg ms-2" to={"/load"} role="button">Load Books</Link>
-                    <Link className="btn btn-outline-light btn-lg ms-2" to={"/add-load"} role="button">Load Book</Link>
+                    <Link className="btn btn-outline-light btn-lg ms-2" to={"/loan"} role="button">Loan Books</Link>
+                    <Link className="btn btn-outline-light btn-lg ms-2" to={"/add-loan"} role="button">Load Book</Link>
                 </div>
             </div>
         </div>

@@ -6,13 +6,13 @@ import { Book } from "../../models/Book.ts";
 import {LoanBook} from "../../models/LoanBook.ts";
 
 interface Props {
-    loanBook: LoanBook[];
+    loanBooks: LoanBook[];
     users: User[];
     books: Book[];
     handleDeleteLoanBook: (loanBook: LoanBook) => void;
 }
 
-const LoanBookList = ({ loanBook, handleDeleteLoanBook }: Props) => {
+const LoanBookList = ({ loanBooks, handleDeleteLoanBook }: Props) => {
 
     return (
         <>
@@ -29,7 +29,7 @@ const LoanBookList = ({ loanBook, handleDeleteLoanBook }: Props) => {
                 </tr>
                 </thead>
                 <tbody>
-                {loanBook.map(loanBook => (
+                {loanBooks.map(loanBook => (
                     <tr key={loanBook.id}>
                         <td>{loanBook.id}</td>
                         <td>{loanBook.book.title}</td>

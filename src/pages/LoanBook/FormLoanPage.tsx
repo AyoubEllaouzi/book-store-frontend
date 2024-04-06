@@ -4,8 +4,8 @@ import {User} from "../../models/User.ts";
 import {Book} from "../../models/Book.ts";
 import {getAllUsers} from "../../api/User.ts";
 import {getAllBooks} from "../../api/Book.ts";
-import HeroSection from "../../components/LendingBook/HeroSection.tsx";
-import LoanBookForm from "../../components/LendingBook/LoanBookForm.tsx";
+import HeroSection from "../../components/LoanBook/HeroSection.tsx";
+import LoanBookForm from "../../components/LoanBook/LoanBookForm.tsx";
 import {getAllLoanBooks} from "../../api/LoanBook.ts";
 export default function FormLoanBookPage(){
     const [LoanBooks, setLoanBooks] = useState<LoanBook[]>([]);

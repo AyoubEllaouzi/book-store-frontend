@@ -60,7 +60,7 @@ export default function LoanBookForm({ loanBooks, users, books }: LoanBookFormPr
             } else {
                 await saveLoanBook(loanBookData);
             }
-            navigate('/lending');
+            navigate('/loan');
         } catch (error: any) {
             alert(error.message);
         }
