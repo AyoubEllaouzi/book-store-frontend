@@ -1,13 +1,12 @@
-import {User} from "../../models/User.ts";
-import {Link} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPen, faTrash} from "@fortawesome/free-solid-svg-icons";
+import { User } from "../../models/User.ts";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen, faTrash, faBook } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
     users: User[],
     handleDeleteUser: (user: User) => void
 }
-
 const UserList = ({ users, handleDeleteUser }: Props) => {
 
     return (
@@ -18,24 +17,39 @@ const UserList = ({ users, handleDeleteUser }: Props) => {
                     <th>id</th>
                     <th>Username</th>
                     <th>Email</th>
+                    <th>Books</th>
                     <th>update</th>
                     <th>delete</th>
                 </tr>
                 </thead>
                 <tbody>
-                {users.map( user=>
+                {users.map(user =>
                     <tr key={user.id}>
                         <td>{user.id}</td>
                         <td>{user.username}</td>
                         <td>{user.email}</td>
                         <td>
-                            <Link to={`/update-user/${user.id}`} className="btn btn-outline-dark">
+                            <Link
+                                to={`/loan/${user.id}`}
+                                className="btn btn-outline-dark"
+                            >
+                                <FontAwesomeIcon icon={faBook} />
+                            </Link>
+                        </td>
+                        <td>
+                            <Link
+                                to={`/update-user/${user.id}`}
+                                className="btn btn-outline-dark"
+                            >
                                 <FontAwesomeIcon icon={faPen} />
                             </Link>
                         </td>
 
                         <td>
-                            <button onClick={() => handleDeleteUser(user)} className="btn btn-outline-danger">
+                            <button
+                                onClick={() => handleDeleteUser(user)}
+                                className="btn btn-outline-danger"
+                            >
                                 <FontAwesomeIcon icon={faTrash} />
                             </button>
                         </td>

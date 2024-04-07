@@ -25,7 +25,7 @@ export default function BookForm() {
         };
 
         fetchData();
-    }, [id]); // Fetch data when id changes
+    }, [id]);
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -36,13 +36,11 @@ export default function BookForm() {
                 author
             };
             if (id) {
-                const bookId = parseInt(id); // Convert id from string to number
+                const bookId = parseInt(id);
                 await updateBook(bookId, book);
             } else {
                 await saveBook(book);
             }
-            // Perform any validation here before submitting the book data
-            ////////
             navigate('/books');
         } catch (error: any) {
             alert(error.message);
@@ -54,15 +52,29 @@ export default function BookForm() {
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label className="form-label">Title</label>
-                    <input value={title} onChange={e => setTitle(e.target.value)} className="form-control" />
+                    <input
+                        value={title}
+                        onChange={e => setTitle(e.target.value)}
+                        className="form-control"
+                    />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Genre</label>
-                    <input type="text" value={genre} onChange={e => setGenre(e.target.value)} className="form-control" />
+                    <input
+                        type="text"
+                        value={genre}
+                        onChange={e => setGenre(e.target.value)}
+                        className="form-control"
+                    />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Author</label>
-                    <input type="text" value={author} onChange={e => setAuthor(e.target.value)} className="form-control" />
+                    <input
+                        type="text"
+                        value={author}
+                        onChange={e => setAuthor(e.target.value)}
+                        className="form-control"
+                    />
                 </div>
                 <button type="submit" className="btn btn-success">Save</button>
             </form>

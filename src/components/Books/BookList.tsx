@@ -31,13 +31,19 @@ const BookList = ({ books, handleDeleteBook }: Props) => {
                         <td>{book.genre}</td>
                         <td>{book.author}</td>
                         <td>
-                            <Link to={`/update-book/${book.id}`} className="btn btn-outline-dark">
+                            <Link
+                                to={`/update-book/${book.id}`}
+                                className="btn btn-outline-dark"
+                            >
                                 <FontAwesomeIcon icon={faPen} />
                             </Link>
                         </td>
 
                         <td>
-                            <button onClick={() => handleDeleteBook(book)} className="btn btn-outline-danger">
+                            <button
+                                onClick={() => handleDeleteBook(book)}
+                                className="btn btn-outline-danger"
+                            >
                                 <FontAwesomeIcon icon={faTrash} />
                             </button>
                         </td>

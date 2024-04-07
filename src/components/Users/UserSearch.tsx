@@ -1,25 +1,16 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { searchUsers } from "../../api/User.ts";
 
-interface User {
-    id: number;
-    username: string;
+interface Props {
+    onSearch: (query: string) => void;
 }
 
-export default function UserSearch() {
+const UserSearch = ({ onSearch }: Props) => {
     const [query, setQuery] = useState('');
-    const [searchResults, setSearchResults] = useState<User[]>([]); // Explicitly specify the type as User[]
-
-    const handleSearch = async (e: React.FormEvent) => {
+    const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
-        try {
-            const users = await searchUsers(query);
-            setSearchResults(users);
-        } catch (error) {
-            console.error('Error searching users:', error);
-        }
+        onSearch(query);
     };
 
     return (
@@ -42,13 +33,8 @@ export default function UserSearch() {
                     </div>
                 </div>
             </div>
-            {searchResults.length > 0 && (
-                <ul>
-                    {searchResults.map(user => (
-                        <li key={user.id}>{user.username}</li>
-                    ))}
-                </ul>
-            )}
         </form>
     );
 }
+
+export default UserSearch;

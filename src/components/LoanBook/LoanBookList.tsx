@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faTrash, faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { User } from "../../models/User.ts";
 import { Book } from "../../models/Book.ts";
-import {LoanBook} from "../../models/LoanBook.ts";
+import { LoanBook } from "../../models/LoanBook.ts";
 
 interface Props {
     loanBooks: LoanBook[];
@@ -13,7 +13,6 @@ interface Props {
 }
 
 const LoanBookList = ({ loanBooks, handleDeleteLoanBook }: Props) => {
-
     return (
         <>
             <table className="table">
@@ -24,6 +23,7 @@ const LoanBookList = ({ loanBooks, handleDeleteLoanBook }: Props) => {
                     <th>User</th>
                     <th>Rating</th>
                     <th>Review</th>
+                    <th>Read</th>
                     <th>Add Review</th>
                     <th>Delete</th>
                 </tr>
@@ -37,12 +37,25 @@ const LoanBookList = ({ loanBooks, handleDeleteLoanBook }: Props) => {
                         <td>{loanBook.rating}</td>
                         <td>{loanBook.review}</td>
                         <td>
-                            <Link to={`/update-loan-book/${loanBook.id}`} className="btn btn-outline-dark">
+                            {loanBook.read ? (
+                                <FontAwesomeIcon icon={faCheck} style={{ color: "green" }} />
+                            ) : (
+                                <FontAwesomeIcon icon={faTimes} style={{ color: "red" }} />
+                            )}
+                        </td>
+                        <td>
+                            <Link
+                                to={`/update-loan-book/${loanBook.id}`}
+                                className="btn btn-outline-dark"
+                            >
                                 <FontAwesomeIcon icon={faPen} />
                             </Link>
                         </td>
                         <td>
-                            <button onClick={() => handleDeleteLoanBook(loanBook)} className="btn btn-outline-danger">
+                            <button
+                                onClick={() => handleDeleteLoanBook(loanBook)}
+                                className="btn btn-outline-danger"
+                            >
                                 <FontAwesomeIcon icon={faTrash} />
                             </button>
                         </td>

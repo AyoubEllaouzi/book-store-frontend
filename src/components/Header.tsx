@@ -1,13 +1,12 @@
 import {Link} from "react-router-dom";
 
-
 export default function Header(){
-    return        <nav className="navbar navbar-expand-lg fixed-top" >
+    return <nav className="navbar navbar-expand-lg fixed-top" >
         <div className="container">
             <Link className="navbar-brand" to={"/users"}>
                 <img
                     id="MDB-logo"
-                    src="../../public/images/logo_norsys.jpg"
+                    src="src/assets/images/logo_norsys.jpg"
                     alt="MDB Logo"
                     draggable="false"
                     height="50"
@@ -33,12 +32,7 @@ export default function Header(){
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link d-flex align-items-center me-3" to={"/books"}>
-                            <i className="fas fa-bookmark pe-2"></i> Add book
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link d-flex align-items-center me-3" to={"/loan"}>
-                            <i className="fas fa-bookmark pe-2"></i> book Review
+                            <i className="fas fa-bookmark pe-2"></i> Books
                         </Link>
                     </li>
                 </ul>

@@ -15,6 +15,7 @@ function App() {
         <BrowserRouter>
             <Header/>
             <Routes>
+                <Route path="/" element={<ListUserPage/>} />
                 <Route path="/users" element={<ListUserPage/>} />
                 <Route path="/update-user/:id" element={<FormUserPage/>} />
                 <Route path="/add-user" element={<FormUserPage/>} />
@@ -23,7 +24,7 @@ function App() {
                 <Route path="/update-book/:id" element={<FormBookPage/>} />
                 <Route path="/add-book" element={<FormBookPage/>} />
 
-                <Route path="/loan" element={<ListLoanBookPage/>} />
+                <Route path="/loan/:id" element={<ListLoanBookPage/>} />
                 <Route path="/update-loan-book/:id" element={<FormLoanBookPage/>} />
                 <Route path="/add-loan" element={<FormLoanBookPage/>} />
             </Routes>

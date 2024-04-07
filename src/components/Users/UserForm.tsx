@@ -21,9 +21,8 @@ export default function UserForm() {
                 console.error('Error fetching user:', error);
             }
         };
-
         fetchData();
-    }, [id]); // Fetch data when id changes
+    }, [id]);
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -33,13 +32,11 @@ export default function UserForm() {
                 email
             };
             if (id) {
-                const userId = parseInt(id); // Convert id from string to number
+                const userId = parseInt(id);
                 await updateUser(userId, user);
             } else {
                 await saveUser(user);
             }
-            // Perform any validation here before submitting the user data
-            ////////
             navigate('/users');
         } catch (error: any) {
             alert(error.message);
@@ -51,11 +48,17 @@ export default function UserForm() {
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label className="form-label">Username</label>
-                    <input value={username} onChange={e => setUsername(e.target.value)} className="form-control" />
+                    <input value={username}
+                           onChange={e => setUsername(e.target.value)}
+                           className="form-control"
+                    />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Email</label>
-                    <input type="email" value={email} onChange={e => setEmail(e.target.value)} className="form-control" />
+                    <input type="email" value={email}
+                           onChange={e => setEmail(e.target.value)}
+                           className="form-control"
+                    />
                 </div>
                 <button type="submit" className="btn btn-success">Save</button>
             </form>

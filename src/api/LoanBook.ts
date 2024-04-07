@@ -55,7 +55,15 @@ export const getAllLoanBooks = async (): Promise<LoanBook[]> => {
     }
 };
 
-
+export const getUserBooks = async (id:number): Promise<LoanBook[]> => {
+    try {
+        const response: ResponseData = await APIProvider.get(`/api/reviews/library/${id}`);
+        console.log("good")
+        return response.data as LoanBook[];
+    } catch (error: any) {
+        throw error.response.data as ErrorResponseData;
+    }
+};
 
 export const searchLoanBooks = async (query: string): Promise<LoanBook[]> => {
     try {

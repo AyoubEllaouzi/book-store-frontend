@@ -7,5 +7,6 @@ export interface LoanBook {
     user: User;
     rating:number;
     review:string;
+    read:boolean;
 }
 

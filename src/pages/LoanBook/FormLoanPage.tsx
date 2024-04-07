@@ -4,7 +4,7 @@ import {User} from "../../models/User.ts";
 import {Book} from "../../models/Book.ts";
 import {getAllUsers} from "../../api/User.ts";
 import {getAllBooks} from "../../api/Book.ts";
-import HeroSection from "../../components/LoanBook/HeroSection.tsx";
+import LoanBookSection from "../../components/LoanBook/LoanBookSection.tsx";
 import LoanBookForm from "../../components/LoanBook/LoanBookForm.tsx";
 import {getAllLoanBooks} from "../../api/LoanBook.ts";
 export default function FormLoanBookPage(){
@@ -30,7 +30,7 @@ export default function FormLoanBookPage(){
     }, []);
     return (
         <>
-            <HeroSection fullName="Loan Page" title="Book store" />
+            <LoanBookSection fullName="Loan Page" title="Book store" />
             <div className="container position-absolute top-50 ms-5">
                 <div className="row justify-content-start">
                     <div className="card">
@@ -38,7 +38,10 @@ export default function FormLoanBookPage(){
                             <div className="row">
                                 <div className="col-md-6">
                                     <h2>Add Loan Book</h2>
-                                    <LoanBookForm LoanBooks={LoanBooks} users={users} books={books} />
+                                    <LoanBookForm
+                                        LoanBooks={LoanBooks}
+                                        users={users} books={books}
+                                    />
                                 </div>
                             </div>
                         </div>

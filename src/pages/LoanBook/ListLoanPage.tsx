@@ -4,24 +4,29 @@ import { User } from "../../models/User.ts";
 import { LoanBook } from "../../models/LoanBook.ts";
 import {Book} from "../../models/Book.ts";
 import {getAllBooks} from "../../api/Book.ts";
-import {deleteLoanBook, getAllLoanBooks} from "../../api/LoanBook.ts";
-import HeroSection from "../../components/LoanBook/HeroSection.tsx";
-import LoanBookList from "../../components/LoanBook/ListLoanBookPage.tsx";
+import {deleteLoanBook, getUserBooks} from "../../api/LoanBook.ts";
+import LoanBookSection from "../../components/LoanBook/LoanBookSection.tsx";
+import LoanBookList from "../../components/LoanBook/LoanBookList.tsx";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function ListLoanBookPage() {
+    const { id } = useParams<{ id: string }>();
     const [loanBooks, setLoanBooks] = useState<LoanBook[]>([]);
     const [users, setUsers] = useState<User[]>([]);
     const [books, setBooks] = useState<Book[]>([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const lendingBooksData = await getAllLoanBooks();
-                setLoanBooks(lendingBooksData);
-                const usersData = await getAllUsers();
-                const booksData = await getAllBooks();
-                setUsers(usersData);
-                setBooks(booksData);
+                if (id) {
+                    const loanBooksData = await getUserBooks(Number(id));
+                    setLoanBooks(loanBooksData);
+                    const usersData = await getAllUsers();
+                    const booksData = await getAllBooks();
+                    setUsers(usersData);
+                    setBooks(booksData);
+                }
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -31,7 +36,6 @@ export default function ListLoanBookPage() {
     }, []);
 
     const handleDeleteLoanBook = async (loanBook: LoanBook) => {
-        // Your delete logic here
         if (loanBook.id === undefined) {
             console.error('Error: loan Book ID is undefined.');
             return;
@@ -47,7 +51,7 @@ export default function ListLoanBookPage() {
 
     return (
         <>
-            <HeroSection fullName="Loan page" title="Book store" />
+            <LoanBookSection fullName="Loan page" title="Book store" />
             <div className="container position-absolute top-50 ms-5">
                 <div className="row justify-content-start">
                     <h2>Loan Book</h2>

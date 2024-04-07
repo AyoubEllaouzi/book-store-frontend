@@ -1,9 +1,9 @@
 import UserForm from "../../components/Users/UserForm.tsx";
-import HeroSection from "../../components/Users/HeroSection.tsx";
+import UserSection from "../../components/Users/UserSection.tsx";
 export default function FormUserPage(){
     return (
         <>
-            <HeroSection fullName="User Page" title="Book store" />
+            <UserSection fullName="User Page" title="Book store" />
             <div className="container position-absolute top-50 ms-5">
                 <div className="row justify-content-start">
                     <div className="card">

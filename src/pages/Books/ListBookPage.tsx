@@ -1,12 +1,13 @@
 import {Book} from "../../models/Book.ts";
-import {deleteBook, getAllBooks} from "../../api/Book.ts";
+import {deleteBook, getAllBooks, searchBooks} from "../../api/Book.ts";
 import BookList from "../../components/Books/BookList.tsx";
-import BookSearch from "../../components/Books/searchBook.tsx";
+import BookSearch from "../../components/Books/BookSearch.tsx";
 import {useEffect, useState} from "react";
-import HeroSection from "../../components/Books/HeroSection.tsx";
+import BookSection from "../../components/Books/BookSection.tsx";
 
 export default function ListBookPage(){
     const [books, setBooks] = useState<Book[]>([]);
+    const [searchResults, setSearchResults] = useState<Book[]>([]);
 
     useEffect(() => {
         const fetchBooks = async () => {
@@ -33,15 +34,37 @@ export default function ListBookPage(){
             console.error('Error deleting book:', error);
         }
     };
+    const handleSearchUsers = async (query: string) => {
+        try {
+            if (query.trim() !== '') {
+                const searchResultsData: Book[] = await searchBooks(query);
+                setSearchResults(searchResultsData);
+                if (searchResultsData.length==0){
+                    alert("book not found");
+                }
+            } else {
+                setSearchResults([]);
+            }
 
+        } catch (error) {
+            console.error('Error searching books:', error);
+        }
+    };
     return (
         <>
-            <HeroSection fullName="Book Page" title="Book store" />
+            <BookSection fullName="Book Page" title="Book store" />
             <div className="container position-absolute top-50 ms-5">
                 <div className="row justify-content-start">
-                    <div className="mb-3"><BookSearch/></div>
+                    <div className="mb-3">
+                        <BookSearch onSearch={handleSearchUsers}/>
+                    </div>
                     <h2>Books List</h2>
-                    <BookList books={books} handleDeleteBook={handleDeleteBook} />
+                    <BookList
+                        books={searchResults.length > 0
+                            ? searchResults
+                            : books}
+                        handleDeleteBook={handleDeleteBook}
+                    />
                 </div>
             </div>
         </>
